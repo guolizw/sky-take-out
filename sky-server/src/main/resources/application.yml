@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   profiles:
@@ -28,6 +28,14 @@ logging:
         mapper: debug
         service: info
         controller: info
+  file:
+    name: D:\sky\sky.log
+  logback:
+    rollingpolicy:
+      max-file-size: 100MB
+      file-name-pattern: D:\sky\sky.log.%d{yyyy-MM-dd}.%i.zip
+      max-history: 3
+      total-size-cap: 500MB
 
 sky:
   jwt:
