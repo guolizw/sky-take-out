@@ -22,7 +22,7 @@
                 phone=#{phone},
             </if>
             <if test="idNumber != null">
-                idNumber=#{idNumber},
+                id_number=#{idNumber},
             </if>
             <if test="password != null">
                 password=#{password},

@@ -40,4 +40,19 @@ public interface EmployeeService {
      * @param id
      */
     void userManage(Integer status, Long id);
+
+    /**
+     * 根据id查询员工接口
+     *
+     * @param id
+     * @return
+     */
+    Employee getEmployeeById(Long id);
+
+    /**
+     * 修改员工信息
+     *
+     * @param employeeDTO
+     */
+    void updateEmployee(EmployeeDTO employeeDTO);
 }

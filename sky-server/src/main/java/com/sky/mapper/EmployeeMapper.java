@@ -7,6 +7,10 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+/**
+ * @author guolizw
+ * @date 2024/05/23
+ */
 @Mapper
 public interface EmployeeMapper {
 
@@ -44,4 +48,14 @@ public interface EmployeeMapper {
      * @param employee
      */
     void updateEmployee(Employee employee);
+
+    /**
+     * 根据id查询员工
+     *
+     * @param id
+     * @return
+     */
+
+    @Select("select * from sky_take_out.employee where id = #{id} ")
+    Employee getEmployeeById(Long id);
 }

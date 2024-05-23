@@ -21,6 +21,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import java.time.LocalDateTime;
+
+/**
+ * @author guolizw
+ * @date 2024/05/23
+ */
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -118,6 +124,42 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .build();
 
         //上面封装成employee实体 可以直接复用mapper封装的动态update sql
+        employeeMapper.updateEmployee(employee);
+    }
+
+    /**
+     * 根据id查询用户
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee getEmployeeById(Long id) {
+        Employee employee = employeeMapper.getEmployeeById(id);
+        employee.setPassword("******");
+        return employee;
+    }
+
+    /**
+     * 修改员工信息
+     *
+     * @param employeeDTO
+     */
+    @Override
+    public void updateEmployee(EmployeeDTO employeeDTO) {
+//        Employee employee = Employee.builder()
+//                .id(employeeDTO.getId())
+//                .name(employeeDTO.getName())
+//                .idNumber(employeeDTO.getIdNumber())
+//                .phone(employeeDTO.getPhone())
+//                .sex(employeeDTO.getSex())
+//                .username(employeeDTO.getUsername())
+//                .build();
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO, employee);
+
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employee.setUpdateTime(LocalDateTime.now());
         employeeMapper.updateEmployee(employee);
     }
 
